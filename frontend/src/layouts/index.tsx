@@ -9,9 +9,11 @@ const Index = (props: IProps) => {
   return (
     <div style={{ color: 'red' }}>
       layout组件下使用antd组件库
-      {props.children}
+      <br />
       <Button type='dashed'>Primary</Button>
       <Button type='primary'>Primary</Button>
+      <hr />
+      {props.children}
     </div>
   );
 }

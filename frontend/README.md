@@ -28,3 +28,11 @@ $ yarn start
 - test: 测试用例，包括单元测试、集成测试等
 - chore: 改变构建流程，或者增加依赖库、工具等
 - revert: 回滚到上一个版本
+
+
+### 测试代码访问
+
+http://localhost:8000/                  --> 首页
+http://localhost:8000/demo              --> 会加载layout页面
+http://localhost:8000/demo/user         --> 会加载layout页面+wrappers
+http://localhost:8000/demo/userInfo     --> 会加载layout页面+pages下的user页面
