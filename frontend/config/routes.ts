@@ -8,18 +8,18 @@ export default [
       {
         path: '/demo/user',
         exact: false,
-        component: '@/pages/user/index',
+        component: '@/pages/demo/user/index',
         wrappers: ['@/wrappers/auth'],
       },
       {
         path: '/demo/userInfo',
         exact: false,
-        component: '@/pages/user/index',
+        component: '@/pages/demo/user/index',
       },
       {
         path: '/demo/sankey',
         exact: false,
-        component: '@/pages/sankey/index',
+        component: '@/pages/demo/sankey/index',
       },
     ]
   },
