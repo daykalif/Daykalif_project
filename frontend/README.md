@@ -32,7 +32,11 @@ $ yarn start
 
 ### 测试代码访问
 
+#### 测试路由
 http://localhost:8000/                  --> 首页
 http://localhost:8000/demo              --> 会加载layout页面
 http://localhost:8000/demo/user         --> 会加载layout页面+wrappers
 http://localhost:8000/demo/userInfo     --> 会加载layout页面+pages下的user页面
+
+#### 测试sankey
+http://localhost:8000/demo/sankey       --> 会加载layout页面+pages下的sankey页面

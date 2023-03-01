@@ -23,6 +23,7 @@
     "@ant-design/pro-layout": "^7.8.3",
     "@arco-design/web-react": "^2.45.1",
     "@arco-plugins/webpack-react": "^1.4.8",
+    "@daykalif/g2plot-sankey": "^1.0.6",
     "babel-plugin-import": "^1.13.6",
     "lodash": "^4.17.21",
     "node": "16.19.0",

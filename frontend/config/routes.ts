@@ -15,7 +15,12 @@ export default [
         path: '/demo/userInfo',
         exact: false,
         component: '@/pages/user/index',
-      }
+      },
+      {
+        path: '/demo/sankey',
+        exact: false,
+        component: '@/pages/sankey/index',
+      },
     ]
   },
 ];
