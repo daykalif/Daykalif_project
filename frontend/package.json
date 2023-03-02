@@ -30,7 +30,8 @@
     "node": "16.19.0",
     "react": "17.x",
     "react-dom": "17.x",
-    "umi": "^3.5.37"
+    "umi": "^3.5.37",
+    "valtio": "^1.10.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

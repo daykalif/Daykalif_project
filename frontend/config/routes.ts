@@ -1,4 +1,7 @@
-// 菜单配置api：https://www.npmjs.com/package/@ant-design/pro-layout
+// 菜单配置api：
+// https://www.npmjs.com/package/@ant-design/pro-layout
+// https://v3.umijs.org/zh-CN/plugins/plugin-layout
+
 export default [
   {
     path: '/',
@@ -45,6 +48,12 @@ export default [
         exact: false,
         hideInMenu: true,       // 加上hideInMenu:true，隐藏当前菜单
         component: '@/pages/demo/sankey/index',
+      },
+      {
+        path: '/demo/valtio',
+        exact: false,
+        name: 'valtio demo',
+        component: '@/pages/demo/valtio-demo/ccc',
       },
     ]
   },

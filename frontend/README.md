@@ -67,3 +67,8 @@ http://localhost:8000/demo/userInfo     --> 会加载layout页面+pages下的use
 
 #### 测试sankey
 http://localhost:8000/demo/sankey       --> 会加载layout页面+pages下的sankey页面
+
+---
+
+### 使用umi max内置valtio方式：
+https://umijs.org/docs/max/introduce
