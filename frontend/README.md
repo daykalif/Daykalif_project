@@ -14,6 +14,33 @@ Start the dev server,
 $ yarn start
 ```
 
+## 项目技术
+react18
+umi
+typescript
+webpack
+react hooks(useReducer,useContext)
+valtio 状态管理
+react-router-dom 路由
+lodash
+
+dva
+antd pro
+arco design pro(文件上传)
+
+echarts
+sankey
+gantt
+crawler
+iconfont
+electron
+jwt
+验证码
+QQ/微信/github登陆
+支付功能
+中英文切换
+chatgpt
+
 
 ## 代码提交规范
 
