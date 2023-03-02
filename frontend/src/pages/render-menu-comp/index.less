@@ -1,0 +1,24 @@
+.button-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 80px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+
+.button-trigger:nth-child(1) {
+  right: 100px;
+  background-color: rgb(var(--arcoblue-6));
+}
+
+.button-trigger:nth-child(1).button-trigger-active {
+  background-color: var(--color-primary-light-4);
+}

@@ -16,8 +16,8 @@ const Index = () => {
   }));
 
   return (
-    <div style={{ border: '1px solid #e53fff', color: '#aaa' }}>
-      user组件下使用arco pro组件库
+    <div style={{ border: '1px solid #e53fff', color: '#33e' }}>
+      <h6>user组件下使用arco pro组件库</h6>
       <br />
       {initialState?.mode}
       <br />

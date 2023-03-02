@@ -10,8 +10,8 @@ const Index = (props: IProps) => {
   const history = useHistory();
 
   return (
-    <div style={{ color: 'red' }}>
-      layout组件下使用antd组件库
+    <div style={{ color: '#e92' }}>
+      <div>这里展示layout组件下使用antd组件库</div>
       <br />
       <Button type='dashed' onClick={() => history.push('/demo/user')}>点击跳转到/demo/user路由</Button>
       <Button type='primary'>Primary</Button>
