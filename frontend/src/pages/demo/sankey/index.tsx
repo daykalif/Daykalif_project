@@ -1,5 +1,8 @@
+import { useAccess, Access } from 'umi';
+import { Button } from '@arco-design/web-react';
 import { Sankey } from '@daykalif/g2plot-sankey/lib/plots/sankey';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 
 // 全路径数据
 export const PATH_DATA = [
@@ -73,7 +76,13 @@ export const ALIPAY_DATA = [
 
 
 export default function IndexPage() {
+  const [visible, setVisible] = useState<boolean>(false);
+  const access = useAccess();
+
   useEffect(() => {
+    if (!visible) {
+      return;
+    }
     const sankey = new Sankey('container', {
       height: 500,
       data: ALIPAY_DATA,
@@ -100,10 +109,18 @@ export default function IndexPage() {
     });
 
     sankey.render();
-  }, []);
+  }, [visible]);
 
 
   return (
-    <div id='container'></div>
+    <Access
+      accessible={!!access.isEditor}
+      fallback={<div>sankey没有访问权限</div>}
+    >
+      <>
+        <Button type='primary' onClick={() => setVisible(true)}>展示sankey</Button>
+        <div id='container'></div>
+      </>
+    </Access>
   );
 }
