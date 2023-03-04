@@ -1,5 +1,6 @@
 import { Form, Input, Button, Message, InputNumber } from '@arco-design/web-react';
 import { useHistory } from 'umi';
+import "@arco-design/web-react/dist/css/arco.css";
 import { doLogin } from '@/api/user/user';
 const FormItem = Form.Item;
 
