@@ -50,7 +50,7 @@ function Login() {
           },
         ]}
       >
-        <Input placeholder='please enter your username' />
+        <Input placeholder='abc' />
       </FormItem>
       <FormItem
         label='密码'
@@ -64,7 +64,7 @@ function Login() {
           },
         ]}
       >
-        <InputNumber placeholder='please enter your age' />
+        <InputNumber placeholder='12' />
       </FormItem>
       <FormItem wrapperCol={{ offset: 5 }}>
         <Button type='primary' htmlType='submit' style={{ marginRight: 24 }}>
