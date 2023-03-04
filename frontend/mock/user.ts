@@ -33,4 +33,15 @@ export default {
       code: 500
     })
   },
+
+  // 模拟登录
+  'POST /api/users/login': (req: Request, res: Response) => {
+    // 添加跨域请求头
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    if (Math.random() > 0.5) {
+      res.json({ code: 0 });
+    } else {
+      res.json({ code: 1 });
+    }
+  },
 }

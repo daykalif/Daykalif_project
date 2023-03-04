@@ -11,6 +11,12 @@ export default [
     access: 'canAccess'
   },
   {
+    path: '/login',
+    name: 'login',
+    component: '@/pages/demo/login',
+    layout: false,
+  },
+  {
     path: '/demo',
     component: '@/layouts/index',
     access: 'isAdmin', // 权限定义返回值的某个 key
