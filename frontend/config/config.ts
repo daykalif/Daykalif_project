@@ -13,4 +13,7 @@ export default defineConfig({
   mfsu: {},
   fastRefresh: {},
   routes: routes,
+  dynamicImport: {
+    loading: '@/components/PageLoading',
+  }
 });

@@ -1,6 +1,7 @@
 import { Notification } from '@arco-design/web-react';
 import { RequestConfig, RunTimeLayoutConfig } from "umi";
 import { ResponseError } from 'umi-request';
+import PageLoading from './components/PageLoading';
 
 export async function getInitialState(): Promise<API.InitialState> {
   return Promise.resolve({
@@ -74,4 +75,10 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       },
     },
   };
+};
+
+
+/** 获取用户信息比较慢的时候会展示一个 loading */
+export const initialStateConfig = {
+  loading: <PageLoading />,
 };
