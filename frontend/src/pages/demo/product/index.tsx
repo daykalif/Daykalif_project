@@ -4,10 +4,12 @@ import ProDescriptions from '@ant-design/pro-descriptions';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Drawer } from 'antd';
 import { useState } from 'react';
+import type { SpinProps } from 'antd';
 
 const Product = () => {
-  const [isShowDetail, setIsShowDetail] = useState(false);
+  const [isShowDetail, setIsShowDetail] = useState<boolean>(false);
   const [product, setProduct] = useState({} as API.Product);
+  const [loading, setLoading] = useState<boolean | SpinProps>(false);
 
   const columns: ProColumns<API.Product>[] = [
     {
@@ -72,11 +74,19 @@ const Product = () => {
         <ProTable<API.Product, API.PageParams>
           columns={columns}
           rowKey='id'
-          request={getProductList}
+          request={async (params) => {
+            setLoading({ tip: '拼命加载中...' });
+            const res = getProductList(params);
+            setTimeout(() => {
+              setLoading(false);
+            }, 1000);
+            return res;
+          }}
           pagination={{
             pageSize: 10,
             onChange: (page) => console.log(page),
           }}
+          loading={loading}
           editable={{
             onSave: (key, row: API.Product) => {
               console.log(key, row, 'onSave');
