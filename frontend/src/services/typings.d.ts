@@ -1,11 +1,13 @@
 declare namespace API {
   interface Product {
     id: number;
+    status: number;
     name: string;
   }
 
   interface ProductList {
     data?: Product[];
+    total?: number;
     success: boolean;
   }
 
@@ -14,4 +16,5 @@ declare namespace API {
     pageSize: number;
     current: number;
   }
+
 }

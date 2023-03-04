@@ -2,15 +2,19 @@ import { Request, Response } from 'express';
 
 function getProductList(req: Request, res: Response) {
   const productList: API.Product[] = [];
-  for (let i = 1; i < 20; i++) {
+  for (let i = 1; i < 100; i++) {
     productList.push({
       id: i,
+      status: i % 3,
       name: 'product - ' + i
     });
   }
   res.json({
     data: productList,
     success: true,
+    total: productList?.length,
+    pageSize: 20,
+    current: 1,
   });
 }
 
