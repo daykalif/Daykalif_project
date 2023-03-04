@@ -58,24 +58,24 @@ export const request: RequestConfig = {
 
 
 // 从服务端请求菜单
-export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-  return {
-    menu: {
-      // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
-      params: {
-        userId: 'userId_12345',
-      },
-      request: async (params, defaultMenuData) => {
-        // initialState.currentUser 中包含了所有用户信息
-        const menuData = await Promise.resolve([
-          { path: '/login', component: '@/pages/demo/login', layout: false, name: '登陆' },
-          { path: '/product', component: '@/pages/demo/product', name: '产品管理' },
-        ])
-        return menuData;
-      },
-    },
-  };
-};
+// export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+//   return {
+//     menu: {
+//       // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
+//       params: {
+//         userId: 'userId_12345',
+//       },
+//       request: async (params, defaultMenuData) => {
+//         // initialState.currentUser 中包含了所有用户信息
+//         const menuData = await Promise.resolve([
+//           { path: '/login', component: '@/pages/demo/login', layout: false, name: '登陆' },
+//           { path: '/product', component: '@/pages/demo/product', name: '产品管理' },
+//         ])
+//         return menuData;
+//       },
+//     },
+//   };
+// };
 
 
 /** 获取用户信息比较慢的时候会展示一个 loading */

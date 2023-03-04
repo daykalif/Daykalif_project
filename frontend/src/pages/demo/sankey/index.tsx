@@ -1,4 +1,4 @@
-import { useAccess, Access } from 'umi';
+import { useAccess, Access, useModel } from 'umi';
 import { Button } from '@arco-design/web-react';
 import { Sankey } from '@daykalif/g2plot-sankey/lib/plots/sankey';
 import { useEffect, useState } from 'react';
@@ -76,6 +76,7 @@ export const ALIPAY_DATA = [
 
 
 export default function IndexPage() {
+  const { initialState, setInitialState } = useModel('@@initialState');
   const [visible, setVisible] = useState<boolean>(false);
   const access = useAccess();
 
@@ -113,14 +114,27 @@ export default function IndexPage() {
 
 
   return (
-    <Access
-      accessible={!!access.isEditor}
-      fallback={<div>sankey没有访问权限</div>}
-    >
-      <>
-        <Button type='primary' onClick={() => setVisible(true)}>展示sankey</Button>
-        <div id='container'></div>
-      </>
-    </Access>
+    <>
+      <Button type='primary' onClick={() => {
+        console.log(initialState);
+        setInitialState({
+          ...initialState,
+          role: {
+            isAdmin: initialState?.role?.isAdmin as boolean,
+            isEditor: !initialState?.role?.isEditor,
+          }
+        } as API.InitialState);
+      }}>没有权限访问sankey，请更改权限</Button>
+      {JSON.stringify(access.isEditor)}
+      <Access
+        accessible={!!access.isEditor}
+        fallback={<div>sankey没有访问权限</div>}
+      >
+        <>
+          <Button type='primary' onClick={() => setVisible(pre => !pre)}>展示sankey</Button>
+          <div id='container'></div>
+        </>
+      </Access>
+    </>
   );
 }

@@ -1,5 +1,3 @@
-import { Route } from "umi";
-
 export default function (initialState: API.InitialState) {
 
   return {
