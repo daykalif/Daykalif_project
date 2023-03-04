@@ -80,3 +80,7 @@ https://umijs.org/docs/max/introduce
 
 解决方案二
 删除/src/.umi 这个文件夹重启即可
+
+
+教学视频参考：
+https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
