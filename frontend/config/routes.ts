@@ -7,11 +7,13 @@ export default [
     path: '/',
     exact: true,
     name: 'home',
-    component: '@/pages/index'
+    component: '@/pages/index',
+    access: 'canAccess'
   },
   {
     path: '/demo',
     component: '@/layouts/index',
+    access: 'isAdmin', // 权限定义返回值的某个 key
     exact: false,
     name: 'demo',
     icon: 'smile',
