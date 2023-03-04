@@ -23,6 +23,7 @@ react hooks(useReducer,useContext)
 valtio 状态管理
 react-router-dom 路由
 lodash
+iconfont
 
 dva
 antd pro
@@ -84,3 +85,8 @@ https://umijs.org/docs/max/introduce
 
 教学视频参考：
 https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
+
+在使用html+js+css的登陆页中：
+1.umi root element style如何设置height:'100%';
+2.iconfont如何使用彩色;
+3.原生js的dom操作实现登陆等操作
