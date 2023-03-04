@@ -63,6 +63,12 @@ export default [
         name: 'valtio demo',
         component: '@/pages/demo/valtio-demo/ccc',
       },
+      {
+        path: '/demo/product',
+        icon: 'crown',
+        name: 'product',
+        component: '@/pages/demo/product/index',
+      }
     ]
   },
 ];

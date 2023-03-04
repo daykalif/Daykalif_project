@@ -8,4 +8,10 @@ declare namespace API {
     data?: Product[];
     success: boolean;
   }
+
+  interface PageParams {
+    page: number;
+    pageSize: number;
+    current: number;
+  }
 }

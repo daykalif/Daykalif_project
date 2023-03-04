@@ -72,3 +72,11 @@ http://localhost:8000/demo/sankey       --> 会加载layout页面+pages下的san
 
 ### 使用umi max内置valtio方式：
 https://umijs.org/docs/max/introduce
+
+
+#### ant design pro v5 Error: Module “xxx“ does not exist in container.报错
+解决方案一
+在/config/config.ts 下注释掉 mfsu: {}, 或者删掉即可
+
+解决方案二
+删除/src/.umi 这个文件夹重启即可
