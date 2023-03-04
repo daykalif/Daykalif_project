@@ -32,6 +32,22 @@ const Product = () => {
           status: 'Error',
         },
       },
+    },
+    {
+      title: '操作',
+      key: 'option',
+      width: 150,
+      valueType: 'option',
+      render: (text, record: API.Product, _, action) => [
+        <a
+          key="editable"
+          onClick={() => {
+            action?.startEditable(record.id);
+          }}
+        >
+          编辑
+        </a>
+      ]
     }
   ];
 
@@ -40,10 +56,21 @@ const Product = () => {
       <PageContainer>
         <ProTable<API.Product, API.PageParams>
           columns={columns}
+          rowKey='id'
           request={getProductList}
           pagination={{
             pageSize: 10,
             onChange: (page) => console.log(page),
+          }}
+          editable={{
+            onSave: (key, row: API.Product) => {
+              console.log(key, row, 'onSave');
+              return Promise.resolve();
+            },
+            onDelete: (key, row: API.Product) => {
+              console.log(key, row, 'onDelete');
+              return Promise.resolve();
+            },
           }}
         />
       </PageContainer>
