@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/pro-descriptions": "^2.0.49",
     "@ant-design/pro-layout": "^7.8.3",
     "@ant-design/pro-table": "^3.3.2",
     "@arco-design/web-react": "^2.45.1",
