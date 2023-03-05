@@ -11,6 +11,13 @@ const srcDoc = `
   <title>登陆注册页面</title>
   <!-- 导入字体图标 -->
   <link rel="stylesheet" href="./font_mw3z7ts489g/iconfont.css">
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.18.2/antd.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.18.2/antd.compact.min.css">
+
   <style>
     /* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
     @font-face {
@@ -319,7 +326,8 @@ const srcDoc = `
   <div class="shell">
     <div class="container a-container" id="a-container">
       <form action="" method="" class="form" id="a-form">
-        <h2 class="form_title title">创建账号</h2>
+        <h2 class="form_title title">创建账号 <div id="demo"></div>
+        </h2>
         <div class="form_icons">
           <span class="iconfont">&#xe667;</span>
           <span class="iconfont">&#xe665;</span>
@@ -401,6 +409,80 @@ const srcDoc = `
       switchBtn[i].addEventListener("click", changeForm)
   }
   window.addEventListener("load", shell);
+
+  let sp = document.createElement('script');
+  sp.src = '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js';
+  document.body.appendChild(sp);
+
+</script>
+
+<script type="text/babel">
+  const TimeNow = () => {
+
+            const [time, setTime] = React.useState('');
+
+            React.useEffect(() => {
+                 const timer = setInterval(()=>{
+                    var curTime = new Date().toLocaleString();
+                    setTime(curTime);                    
+                }, 1000);
+                return () => {
+                    clearInterval(timer);
+                }
+            }, []);
+
+            return <div>时间：{time}</div>
+        }
+
+        const MessageBox = () => {
+            const handleClick = () => {  
+                alert('clicked'); 
+                console.log(123); 
+            }
+            const dataSource = [
+                {
+                    key: '1',
+                    name: '胡彦斌',
+                    age: 32,
+                    address: '西湖区湖底公园1号',
+                },
+                {
+                    key: '2',
+                    name: '胡彦祖',
+                    age: 42,
+                    address: '西湖区湖底公园1号',
+                },
+                ];
+
+                const columns = [
+                {
+                    title: '姓名',
+                    dataIndex: 'name',
+                    key: 'name',
+                },
+                {
+                    title: '年龄',
+                    dataIndex: 'age',
+                    key: 'age',
+                },
+                {
+                    title: '住址',
+                    dataIndex: 'address',
+                    key: 'address',
+                },
+            ];
+
+            return (
+                <div>
+                    <antd.Button onClick={handleClick}>Hello World!</antd.Button><TimeNow />
+                    <antd.Table dataSource={dataSource} columns={columns} />
+                </div>)  
+        };
+
+        ReactDOM.render( <MessageBox/>,  
+            document.getElementById('demo'),
+        )
+    </script>
 </script>
 </body>
 

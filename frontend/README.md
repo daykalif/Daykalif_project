@@ -82,6 +82,7 @@ https://umijs.org/docs/max/introduce
 解决方案二
 删除/src/.umi 这个文件夹重启即可
 
+---
 
 教学视频参考：
 https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
@@ -90,3 +91,8 @@ https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
 1.umi root element style如何设置height:'100%';
 2.iconfont如何使用彩色;
 3.原生js的dom操作实现登陆等操作
+
+
+---
+html文件中使用react、antd等
+https://www.jianshu.com/p/4ac0ac6aa138

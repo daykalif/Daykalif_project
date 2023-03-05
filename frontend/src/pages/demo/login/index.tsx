@@ -21,7 +21,7 @@ function Login() {
     })
   }
 
-  // return (<HtmlLoginPage />);
+  return (<HtmlLoginPage />);
 
   return (
     <Form
