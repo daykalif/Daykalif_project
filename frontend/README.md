@@ -86,6 +86,7 @@ https://umijs.org/docs/max/introduce
 
 教学视频参考：
 https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
+https://www.bilibili.com/video/BV1Yv4y1v7di?t=2.9
 
 在使用html+js+css的登陆页中：
 1.umi root element style如何设置height:'100%';
