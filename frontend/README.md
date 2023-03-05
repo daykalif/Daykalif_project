@@ -96,3 +96,7 @@ https://www.bilibili.com/video/BV1mr4y1r7GV?p=1
 ---
 html文件中使用react、antd等
 https://www.jianshu.com/p/4ac0ac6aa138
+
+---
+umi-request详见：
+https://github.com/umijs/umi-request
