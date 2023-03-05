@@ -5,6 +5,7 @@ import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Drawer } from 'antd';
 import { useState } from 'react';
 import type { SpinProps } from 'antd';
+import About from './about';
 
 const Product = () => {
   const [isShowDetail, setIsShowDetail] = useState<boolean>(false);
@@ -70,6 +71,7 @@ const Product = () => {
 
   return (
     <div>
+      <About count={5} />
       <PageContainer>
         <ProTable<API.Product, API.PageParams>
           columns={columns}
@@ -98,7 +100,7 @@ const Product = () => {
             },
           }}
         />
-        {JSON.stringify(isShowDetail)}
+
         <Drawer
           visible={isShowDetail}
           onClose={() => {
@@ -125,5 +127,7 @@ const Product = () => {
     </div>
   );
 }
+
+Product.title = '这里是商品列表页';
 
 export default Product;

@@ -71,4 +71,5 @@ export default [
       }
     ]
   },
+  { component: '@/pages/404', layout: false, },
 ];
