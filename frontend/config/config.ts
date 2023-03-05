@@ -15,5 +15,9 @@ export default defineConfig({
   routes: routes,
   dynamicImport: {
     loading: '@/components/PageLoading',
+  },
+  dva: {
+    immer: true,
+    hmr: false,
   }
 });

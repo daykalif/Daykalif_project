@@ -68,6 +68,12 @@ export default [
         icon: 'crown',
         name: 'product',
         component: '@/pages/demo/product/index',
+      },
+      {
+        path: '/demo/todolist',
+        icon: 'crown',
+        name: 'todolist',
+        component: '@/pages/demo/todolist/index',
       }
     ]
   },
