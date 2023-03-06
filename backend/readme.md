@@ -14,3 +14,4 @@
 `"dev": "cross-env NODE_ENV=dev nodemon ./bin/www"`
 
 7.`npm run dev`
+访问 http://localhost:3000/
