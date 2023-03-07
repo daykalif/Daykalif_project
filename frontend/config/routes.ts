@@ -17,6 +17,12 @@ export default [
     layout: false,
   },
   {
+    path: '/register',
+    name: 'register',
+    component: '@/pages/demo/register',
+    layout: false,
+  },
+  {
     path: '/demo',
     component: '@/layouts/index',
     access: 'isAdmin', // 权限定义返回值的某个 key
