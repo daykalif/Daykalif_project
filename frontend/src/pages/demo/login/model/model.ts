@@ -1,20 +1,16 @@
 import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
-
-export interface IndexModelState {
-  username: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
+import * as actionTypes from '../actionTypes';
+import { isEmpty } from 'lodash';
 
 export interface IndexModelType {
-  namespace: 'register';
+  namespace: 'login';
   state: {
-    userInfo: IndexModelState,
+    isAuth: boolean,
+    user: object,
     errMsg: string[],
   };
   reducers: {
-    registerReducer: Reducer;
+    loginReducer: Reducer;
     setErrorMsg: Reducer;
   };
   effects: {};
@@ -22,24 +18,20 @@ export interface IndexModelType {
 }
 
 const IndexModel: IndexModelType = {
-  namespace: 'register',
+  namespace: 'login',
   state: {
-    userInfo: {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
+    isAuth: false,
+    user: {},
     errMsg: [],
   },
 
   // 同步函数
   reducers: {
-    registerReducer(state, action) {
+    loginReducer(state, action) {
       return {
-        ...state,
-        userInfo: action.payload,
-      };
+        isAuth: !isEmpty(action.payload),
+        user: action.payload,
+      }
     },
     setErrorMsg(state, action) {
       return {

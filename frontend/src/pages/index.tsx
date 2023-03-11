@@ -12,8 +12,8 @@ import RenderMenuComp from './render-menu-comp';
 export default function IndexPage() {
   const history = useHistory();
 
-  const userInfo = useSelector((state: any) => state.register.userInfo);
-  console.log('userInfo===>', userInfo);
+  const { user, isAuth } = useSelector((state: any) => state.login);
+  console.log(user, isAuth)
 
   useEffect(() => {
     const addOne = add(5);
@@ -24,7 +24,7 @@ export default function IndexPage() {
   return (
     <div>
       <h1 className={styles.title}>这里是Pages index</h1>
-      {userInfo.username && <Alert message={<div>登陆成功，欢迎{userInfo.username}</div>} type="success" closable />}
+      {isAuth && <Alert message={<div>登陆成功，欢迎{user.username}</div>} type="success" closable />}
       <Button type='dashed' onClick={() => history.push('/demo')}>点击跳转到/demo路由</Button>
       <MenuLayout />
       <RenderMenuComp />

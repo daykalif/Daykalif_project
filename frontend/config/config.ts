@@ -30,4 +30,5 @@ export default defineConfig({
       changeOrigin: true,
     },
   },
+  mock: false,  // 关闭mock
 });

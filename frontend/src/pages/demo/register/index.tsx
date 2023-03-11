@@ -35,7 +35,7 @@ function Login() {
         type: 'register/registerReducer',
         payload: user,
       });
-      return history.push('/');
+      return history.push('/login');
     });
   }
 
@@ -51,28 +51,28 @@ function Login() {
         field='username'
         required
       >
-        <Input placeholder='请输入用户名' />
+        <Input type='text' placeholder='请输入用户名' />
       </FormItem>
       <FormItem
         label='邮箱'
         field='email'
         required
       >
-        <Input placeholder='请输入邮箱' />
+        <Input type='text' placeholder='请输入邮箱' />
       </FormItem>
       <FormItem
         label='密码'
         field='password'
         required
       >
-        <Input placeholder='请输入密码' />
+        <Input type='password' placeholder='请输入密码' />
       </FormItem>
       <FormItem
         label='确认密码'
         field='passwordConfirm'
         required
       >
-        <Input placeholder='请再次输入密码' />
+        <Input type='password' placeholder='请再次输入密码' />
       </FormItem>
       <FormItem wrapperCol={{ offset: 5 }}>
         <Button type='primary' htmlType='submit' style={{ marginRight: 24 }}>
