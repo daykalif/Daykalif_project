@@ -1,6 +1,7 @@
 import { Fragment, useEffect } from "react";
-import { Space, Avatar } from 'antd';
-import { IRouteComponentProps, useModel, useSelector, useDispatch } from "umi";
+import { Avatar, Dropdown, Button } from 'antd';
+import type { MenuProps } from 'antd';
+import { IRouteComponentProps, useSelector, useDispatch } from "umi";
 import decode from 'jwt-decode';
 
 const RightContentRender = (props: IRouteComponentProps) => {
@@ -23,15 +24,32 @@ const RightContentRender = (props: IRouteComponentProps) => {
   const { user, isAuth } = useSelector((state: any) => state.login);
 
 
+  const items: MenuProps['items'] = [
+    {
+      key: 'logout',
+      label: (
+        <Button type="link" onClick={() => {
+          localStorage.removeItem('DAYKALIF-TOKEN');
+          dispatch({
+            type: 'login/logoutReducer',
+            payload: {},
+          });
+        }}>退出</Button>
+      ),
+    }
+  ];
+
   return (
     <Fragment>
-      <Space size={22}>
-        <Avatar
-          className="a-mb-sm"
-          src="https://joesch.moe/api/v1/random?key=1"
-        />
-        {isAuth && <span className="a-ml-sm">{user.username}</span>}
-      </Space>
+      <Avatar
+        className="a-mb-sm"
+        src="https://joesch.moe/api/v1/random?key=1"
+      />
+      {isAuth && (
+        <Dropdown menu={{ items }} placement="bottomRight">
+          <span className="a-ml-sm">{user.username}</span>
+        </Dropdown>
+      )}
     </Fragment>
   );
 }

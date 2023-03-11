@@ -11,6 +11,7 @@ export interface IndexModelType {
   };
   reducers: {
     loginReducer: Reducer;
+    logoutReducer: Reducer;
     setErrorMsg: Reducer;
   };
   effects: {};
@@ -28,6 +29,12 @@ const IndexModel: IndexModelType = {
   // 同步函数
   reducers: {
     loginReducer(state, action) {
+      return {
+        isAuth: !isEmpty(action.payload),
+        user: action.payload,
+      }
+    },
+    logoutReducer(state, action) {
       return {
         isAuth: !isEmpty(action.payload),
         user: action.payload,
