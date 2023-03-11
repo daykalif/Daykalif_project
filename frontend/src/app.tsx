@@ -2,6 +2,7 @@ import { Notification } from '@arco-design/web-react';
 import { RequestConfig, RunTimeLayoutConfig } from "umi";
 import { ResponseError } from 'umi-request';
 import PageLoading from './components/PageLoading';
+import RightContentRender from './layouts/rightContentRender';
 
 export async function getInitialState(): Promise<API.InitialState> {
   return Promise.resolve({
@@ -11,6 +12,19 @@ export async function getInitialState(): Promise<API.InitialState> {
       isEditor: false,
     }
   });
+  // const initialState = { user: {} };
+  // try {
+  //   const result = await queryLoginUser({ userId: '' });
+  //   if (result?.success && result?.data) {
+  //     const { data } = result ?? {};
+  //     initialState.user = {
+  //       ...data,
+  //     };
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  // return initialState;
 }
 
 // request 用于配置全局的网络请求，你可以在这里做拦截器，全局错误处理，鉴权的配置。
@@ -28,13 +42,23 @@ const errorHandler = (error: ResponseError) => {
 // 请求前拦截：requestInterceptors
 // https://pro.ant.design/zh-CN/docs/request
 const authHeaderInterceptor = (url: string, options: RequestConfig) => {
-  const token = localStorage.getItem('token');
+  const passURL = ['/api/user/login', '/api/user/register'];
+  if (passURL.includes(url)) {
+    return {
+      url: `${url}`,
+      options: { ...options, interceptors: true },
+    };
+  }
+
+  const token = localStorage.getItem('DAYKALIF-TOKEN');
   if (token !== null) {
     const authHeader = { Authorization: `Bearer ${token}`, QQ: 'daykalif' };
     return {
       url: `${url}`,
       options: { ...options, interceptors: true, headers: authHeader },
     }
+  } else {
+    delete options?.headers;
   }
   return {
     url: `${url}`,
@@ -45,8 +69,10 @@ const authHeaderInterceptor = (url: string, options: RequestConfig) => {
 // 响应后拦截：responseInterceptors 
 // https://pro.ant.design/zh-CN/docs/request
 const demoResponseInterceptors = (response: Response, options: RequestConfig) => {
-  // response.headers.append('interceptors', 'yes yo');
-  console.log(response.status);
+  const { status, msg } = response;
+  if (status === 501 && msg === 'TOKEN ERROR') {
+    window.location.href = '/login';
+  };
   return response;
 };
 
@@ -58,24 +84,33 @@ export const request: RequestConfig = {
 
 
 // 从服务端请求菜单
-// export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-//   return {
-//     menu: {
-//       // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
-//       params: {
-//         userId: 'userId_12345',
-//       },
-//       request: async (params, defaultMenuData) => {
-//         // initialState.currentUser 中包含了所有用户信息
-//         const menuData = await Promise.resolve([
-//           { path: '/login', component: '@/pages/demo/login', layout: false, name: '登陆' },
-//           { path: '/product', component: '@/pages/demo/product', name: '产品管理' },
-//         ])
-//         return menuData;
-//       },
-//     },
-//   };
-// };
+const LOGO_URL = 'https://img0.baidu.com/it/u=332516632,1456617461&fm=253&fmt=auto&app=120&f=JPEG?w=801&h=500';
+export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+  return {
+    title: 'Daykalif’s Web',
+    logo: LOGO_URL,
+    local: 'zh-CN',
+    collapse: true,
+    layout: 'mix',
+    rightContentRender: (props) => <RightContentRender {...props} />,
+    navTheme: 'light', // 左侧导航的主题为 浅色 主题
+    fixSiderbar: true,
+    fixHeader: true,
+    disableMobile: true,
+    contentStyle: { padding: 12 },
+    disableContentMargin: true,
+    actionsRender: false,
+    avatarProps: false,
+    menu: {
+      locale: false,
+    },
+    token: {
+      header: {
+        heightLayoutHeader: 46,
+      }
+    }
+  };
+};
 
 
 /** 获取用户信息比较慢的时候会展示一个 loading */

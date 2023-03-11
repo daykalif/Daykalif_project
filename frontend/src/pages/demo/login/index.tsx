@@ -37,6 +37,31 @@ function Login() {
     });
   }
 
+  const mockLogin = (user: API.IUser) => {
+    doMockLogin(user).then(response => {
+      console.log('login response===>', response);
+
+      // 登陆失败
+      if (response.status === 501) {
+        Message.error(response.msg);
+        return dispatch({
+          type: 'login/setErrorMsg',
+          payload: response.msg,
+        });
+      }
+
+      // 存储TOKEN到本地
+      localStorage.setItem('DAYKALIF-TOKEN', response.token);
+      // 登陆成功，同步用户状态和用户信息
+      dispatch({
+        type: 'login/loginReducer',
+        payload: decode(response.token),
+      });
+      // 跳转首页
+      return history.push('/');
+    });
+  }
+
   return (
     <Form
       form={form}
