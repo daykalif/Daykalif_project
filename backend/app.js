@@ -8,7 +8,7 @@ const Joi = require('@hapi/joi');
 
 var indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
-const userRouter = require('./routes/user');
+const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 
 var app = express();
@@ -21,7 +21,7 @@ app.use(cookieParser());
 // 注册路由
 app.use('/', indexRouter);
 app.use('/api/blog', blogRouter);
-app.use('/api/user', userRouter);
+app.use('/api/user', loginRouter);
 app.use('/api/user', registerRouter);
 
 /** 错误处理 */
