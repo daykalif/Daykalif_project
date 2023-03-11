@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');  // 解析cookie
 var logger = require('morgan'); // 写日志
 const Joi = require('@hapi/joi');
+var { expressjwt: expJWT } = require("express-jwt");
+const config = require('./config');
 
 
 var indexRouter = require('./routes/index');
@@ -18,20 +20,38 @@ app.use(express.json());  // 设置之后，可以在路由中通过request.body
 app.use(express.urlencoded({ extended: false })); // post兼容application/x-www-form-urlencode格式
 app.use(cookieParser());
 
+// 后端验证token，unless中的请求可以不验证token
+app.use(
+  expJWT({
+    secret: config.jwtKey,
+    algorithms: ["HS256"],
+  }).unless({ path: ['/api/user/login', '/api/user/register'] })
+);
+
 // 注册路由
 app.use('/', indexRouter);
-app.use('/api/blog', blogRouter);
 app.use('/api/user', loginRouter);
 app.use('/api/user', registerRouter);
+app.use('/api/blog', blogRouter);
 
 /** 错误处理 */
 app.use((err, req, res, next) => {
+  // 如果前端登陆信息未通过Joi.ValidationError的验证，则返回登陆表单内容错误
   if (err instanceof Joi.ValidationError) {
     return res.send({
       status: 501,
       msg: [err.details[0].context.label, err.details[0].message]
     });
   }
+
+  // 如果后端校验token未通过，则返回给前端TOKEN ERROR
+  if (err.name === 'UnauthorizedError') {
+    return res.send({
+      status: 501,
+      msg: 'TOKEN ERROR'
+    });
+  }
+
   res.send({
     status: 501,
     msg: err.message || err,
