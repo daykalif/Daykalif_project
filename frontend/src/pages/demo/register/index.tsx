@@ -1,19 +1,40 @@
-import { Form, Input, Button, Message, InputNumber } from '@arco-design/web-react';
-import { useHistory } from 'umi';
+import { Form, Input, Button, InputNumber } from '@arco-design/web-react';
 import "@arco-design/web-react/dist/css/arco.css";
 import { doRegister } from '@/api/user/user';
+import { useDispatch, useSelector } from 'umi';
+import { useEffect } from 'react';
 
 const FormItem = Form.Item;
 
 function Login() {
   const [form] = Form.useForm();
-  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const register = (user: API.IUser) => {
+  const data = useSelector((state: any) => state.register.errMsg);
+  useEffect(() => {
+    form.setFields({
+      [data[0]]: {
+        error: {
+          message: data[1]
+        },
+      }
+    });
+  }, [data]);
+
+  const onRegister = (user: API.IUser) => {
     doRegister(user).then(response => {
       console.log('register responst----->', user, response);
-      history.push('/login');
-    })
+      if (response.status === 501) {
+        dispatch({
+          type: 'register/setErrorMsg',
+          payload: response.msg,
+        });
+      }
+      dispatch({
+        type: 'register/registerReducer',
+        payload: user,
+      });
+    });
   }
 
   return (
@@ -21,18 +42,7 @@ function Login() {
       form={form}
       autoComplete='off'
       style={{ width: 600 }}
-      validateMessages={{
-        required: (_, { label }) => `必须填写 ${label}`,
-        string: {
-          length: `字符数必须是 #{length}`,
-          match: `不匹配正则 #{pattern}`,
-        },
-        number: {
-          min: `最小值为 #{min}`,
-          max: `最大值为 #{max}`,
-        },
-      }}
-      onSubmit={register}
+      onSubmit={onRegister}
     >
       <FormItem
         label='用户名'
@@ -53,14 +63,14 @@ function Login() {
         field='password'
         required
       >
-        <InputNumber placeholder='请输入密码' />
+        <Input placeholder='请输入密码' />
       </FormItem>
       <FormItem
         label='确认密码'
         field='passwordConfirm'
         required
       >
-        <InputNumber placeholder='请再次输入密码' />
+        <Input placeholder='请再次输入密码' />
       </FormItem>
       <FormItem wrapperCol={{ offset: 5 }}>
         <Button type='primary' htmlType='submit' style={{ marginRight: 24 }}>

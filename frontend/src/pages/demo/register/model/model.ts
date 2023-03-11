@@ -9,9 +9,13 @@ export interface IndexModelState {
 
 export interface IndexModelType {
   namespace: 'register';
-  state: IndexModelState;
+  state: {
+    userInfo: IndexModelState,
+    errMsg: string[],
+  };
   reducers: {
     registerReducer: Reducer;
+    setErrorMsg: Reducer;
   };
   effects: {};
   subscriptions: {};
@@ -20,17 +24,28 @@ export interface IndexModelType {
 const IndexModel: IndexModelType = {
   namespace: 'register',
   state: {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    userInfo: {
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
+    errMsg: [],
   },
 
   // 同步函数
   reducers: {
     registerReducer(state, action) {
-      console.log('action====>', action);
-      return action.payload;
+      return {
+        ...state,
+        userInfo: action.payload,
+      };
+    },
+    setErrorMsg(state, action) {
+      return {
+        ...state,
+        errMsg: action.payload,
+      };
     },
   },
 
