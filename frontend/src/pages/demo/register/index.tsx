@@ -1,7 +1,7 @@
 import { Form, Input, Button, InputNumber } from '@arco-design/web-react';
 import "@arco-design/web-react/dist/css/arco.css";
 import { doRegister } from '@/api/user/user';
-import { useDispatch, useSelector } from 'umi';
+import { useDispatch, useHistory, useSelector } from 'umi';
 import { useEffect } from 'react';
 
 const FormItem = Form.Item;
@@ -9,6 +9,7 @@ const FormItem = Form.Item;
 function Login() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const data = useSelector((state: any) => state.register.errMsg);
   useEffect(() => {
@@ -25,7 +26,7 @@ function Login() {
     doRegister(user).then(response => {
       console.log('register responst----->', user, response);
       if (response.status === 501) {
-        dispatch({
+        return dispatch({
           type: 'register/setErrorMsg',
           payload: response.msg,
         });
@@ -34,6 +35,7 @@ function Login() {
         type: 'register/registerReducer',
         payload: user,
       });
+      return history.push('/');
     });
   }
 
