@@ -8,7 +8,8 @@ export default [
     exact: true,
     name: 'home',
     component: '@/pages/index',
-    access: 'canAccess'
+    access: 'canAccess',
+    wrappers: ['@/wrappers/auth'],
   },
   {
     path: '/login',
@@ -27,6 +28,7 @@ export default [
     component: '@/layouts/index',
     access: 'isAdmin', // 权限定义返回值的某个 key
     exact: false,
+    wrappers: ['@/wrappers/auth'],
     name: 'demo',
     icon: 'smile',
     hideChildrenMenu: true,  // 隐藏其下面所有子菜单
@@ -37,7 +39,6 @@ export default [
         name: 'user',
         icon: 'crown',      // 子菜单的icon无法显示
         component: '@/pages/demo/user/index',
-        wrappers: ['@/wrappers/auth'],
       },
       {
         path: '/demo/userInfo',

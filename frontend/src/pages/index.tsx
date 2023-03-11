@@ -5,7 +5,7 @@ import styles from './index.less';
 import MenuLayout from './menu-layout';
 import RenderMenuComp from './render-menu-comp';
 
-export default function IndexPage() {
+const IndexPage = () => {
   const history = useHistory();
 
   return (
@@ -17,3 +17,7 @@ export default function IndexPage() {
     </div>
   );
 }
+
+IndexPage.wrappers = ['@/wrappers/auth'];
+
+export default IndexPage;
