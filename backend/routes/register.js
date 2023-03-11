@@ -1,19 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const valid = require('../middleware/valid');
+const { registerSchema } = require('../schema/register');
+const registerHandle = require('../routesHandle/register');
 
-router.post('/register', function(req, res, next) {
-  const { username, email, password, passwordConfirm } = req.body;
-  res.json({
-    success: true,
-    code: 200,
-    data: {
-      username,
-      email,
-      password,
-      passwordConfirm
-    },
-    errorMsg: {},
-  });
-});
+router.post('/register', valid(registerSchema), registerHandle);
 
 module.exports = router;

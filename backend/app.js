@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');  // 解析cookie
 var logger = require('morgan'); // 写日志
+const Joi = require('@hapi/joi');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -28,6 +30,20 @@ app.use('/users', usersRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/user', userRouter);
 app.use('/api/user', registerRouter);
+
+/** 错误处理 */
+app.use((err, req, res, next) => {
+  if (err instanceof Joi.ValidationError) {
+    return res.send({
+      status: 501,
+      msg: [err.details[0].context.label, err.details[0].message]
+    });
+  }
+  res.send({
+    status: 501,
+    msg: err.message || err,
+  })
+})
 
 
 
