@@ -1,9 +1,8 @@
 import { Button } from '@arco-design/web-react';
 import { Alert } from 'antd';
-import _ from 'lodash'
-import { add } from 'lodash/fp'
 import { useEffect } from 'react';
-import { useHistory, useSelector } from 'umi';
+import { useDispatch, useHistory, useSelector } from 'umi';
+import decode from 'jwt-decode';
 
 import styles from './index.less';
 import MenuLayout from './menu-layout';
@@ -11,14 +10,18 @@ import RenderMenuComp from './render-menu-comp';
 
 export default function IndexPage() {
   const history = useHistory();
-
   const { user, isAuth } = useSelector((state: any) => state.login);
-  console.log(user, isAuth)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const addOne = add(5);
-    const lodash_test = _.map([1, 2, 3], addOne);
-    console.log(lodash_test);
+    const tk = localStorage.getItem('DAYKALIF-TOKEN');
+    // 解析TOKEN并同步到数据管理
+    if (tk) {
+      dispatch({
+        type: 'login/loginReducer',
+        payload: decode(tk),
+      });
+    }
   }, []);
 
   return (

@@ -16,6 +16,7 @@ function Login() {
     doLogin(user).then(response => {
       console.log('login response===>', response);
 
+      // 登陆失败
       if (response.status === 501) {
         Message.error(response.msg);
         return dispatch({
@@ -23,7 +24,10 @@ function Login() {
           payload: response.msg,
         });
       }
-      // 同步用户状态和用户信息
+
+      // 存储TOKEN到本地
+      localStorage.setItem('DAYKALIF-TOKEN', response.token);
+      // 登陆成功，同步用户状态和用户信息
       dispatch({
         type: 'login/loginReducer',
         payload: decode(response.token),
