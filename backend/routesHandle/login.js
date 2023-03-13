@@ -8,13 +8,19 @@ module.exports = (req, res) => {
 
   // 1.查询用户是否存在
   const sql = 'SELECT * FROM user WHERE username=?';
+  if (!req.body.username || !req.body.password) {
+    return res.send({
+      status: 501,
+      msg: '请输入正确的用户名或密码',
+    });
+  }
 
   db(sql, req.body.username, result => {
     if (result.length !== 1) {
       return res.send({
         status: 501,
         msg: '此用户不存在',
-      })
+      });
     }
 
     // 2.如果存在就进行密码比较
