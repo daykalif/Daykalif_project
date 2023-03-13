@@ -3,12 +3,12 @@ import { useDispatch, useHistory } from 'umi';
 import "@arco-design/web-react/dist/css/arco.css";
 import { doLogin, doMockLogin } from '@/api/user/user';
 import decode from 'jwt-decode';
-import './style.less';
+import '../style.less';
 import { useRef } from 'react';
 
 const FormItem = Form.Item;
 
-function LoginTemplate() {
+function Login() {
   const formRef = useRef<FormInstance<any, any, string | number | symbol>>(null);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -94,7 +94,6 @@ function LoginTemplate() {
           onClick={async () => {
             if (formRef.current) {
               const user = await formRef.current.validate();
-              console.log(user)
               login(user);
             }
           }}
@@ -115,4 +114,4 @@ function LoginTemplate() {
   );
 }
 
-export default LoginTemplate;
+export default Login;

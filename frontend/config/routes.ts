@@ -14,13 +14,8 @@ export default [
   {
     path: '/login',
     name: 'login',
-    component: '@/pages/demo/login',
-    layout: false,
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: '@/pages/demo/register',
+    hideInMenu: true,
+    component: '@/pages/demo/LoginAndRegister',
     layout: false,
   },
   {
